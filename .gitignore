@@ -1,0 +1,20 @@
+# Ignore local Streamlit secrets containing passwords and API keys
+.streamlit/secrets.toml
+.streamlit/
+# Ignore your actual virtual environment folder
+venv/
+.venv/
+
+# Ignore Python cache and temporary files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
