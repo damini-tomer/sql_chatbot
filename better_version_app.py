@@ -57,22 +57,27 @@ def init_agents():
     # ----------------------------------------------------
     # AGENT 1: The Guard Dog (Hardened Router)
     # ----------------------------------------------------
-    router_template = """You are a strict security and route classification agent.
-    Analyze the user's input phrase. You must decide if it is purely casual chitchat (greetings like 'hi', 'how are you', 'tell me a joke') OR if it mentions, requests, or targets structural/analytical information about the connected database or its tables (e.g. 'tell me about my database', 'what tables do I have?', 'find the max sales').
+router_template = """You are a highly capable AI assistant and a strict route classification agent.
+    Analyze the user's input phrase. 
+    
+    1. If it mentions, requests, or targets structural/analytical information about the connected database or its tables (e.g., 'tell me about my database', 'what tables do I have?', 'find the max sales'), set "is_db_query" to true.
+    2. If it is purely casual chitchat, a general question, or a request for a joke, set "is_db_query" to false.
     
     CRITICAL RULE: If the user refers to "database", "tables", "schema", or asks a question matching business data tracking, "is_db_query" MUST be true.
+    
+    If "is_db_query" is false, you must act as a helpful general AI. Provide a full, natural, and entertaining response to the user's prompt in the "casual_response" field (e.g., tell the joke they asked for, answer their general question, or chat normally).
     
     Respond ONLY with a JSON object matching this structure:
     {{
         "is_db_query": true or false,
-        "casual_response": "Write a friendly greeting ONLY if is_db_query is false, otherwise leave blank string"
+        "casual_response": "Your full AI response to the user if is_db_query is false, otherwise leave as a blank string"
     }}
     
     User Input: {question}
     Response (JSON only):"""
+    
     router_prompt = ChatPromptTemplate.from_template(router_template)
     router_chain = router_prompt | llm_light | JsonOutputParser()
-
     # ----------------------------------------------------
     # AGENT 2: The Table Extractor
     # ----------------------------------------------------
