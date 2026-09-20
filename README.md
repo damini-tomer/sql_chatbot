@@ -12,12 +12,12 @@ An interactive, production-grade Streamlit web application that enables non-tech
 ---
 
 ## 🧠 System Architecture Flow
-When a user submits a prompt, the system routes the data through the following pipeline:
-1. **Context Aggregation:** LangChain inspects the active MySQL database and extracts live table structures and data-type mappings.
-2. **SQL Generation (LCEL Chain):** The user question + active 6-table schema blueprint are compiled into a strict prompt layout and dispatched to the Groq inference engine.
-3. **Execution Safety Layer:** The pipeline strips away markdown blocks, extracts raw SQL text strings, and submits queries via an isolated SQLAlchemy/PyMySQL driver block.
-4. **Natural Language Synthesis:** The final response block receives the original question, the generated SQL code, and the raw database records to output a unified textual executive summary.
-
+When a user submits a prompt, the system routes the data through the following AI pipeline:
+1. **The Guard Dog (Router):** Classifies user intent. Blocks non-database chitchat and malicious injection attempts before they reach the execution layer.
+2. **Schema Extractor:** Analyzes the request against the data dictionary to isolate the exact tables required (e.g., mapping "transactions" to `sales_order`).
+3. **SQL Engineer:** Generates highly accurate, syntactically perfect MySQL queries handling complex aggregations, table backticks, and strict `ONLY_FULL_GROUP_BY` logic.
+4. **Insight Synthesizer:** Translates the raw numeric Pandas database matrix back into a clear, concise natural language business summary.
+5. **Visualization Architect:** Evaluates the dimensionality of the data to dynamically generate an interactive Streamlit UI chart.
 ---
 
 ## 🛠️ Tech Stack & Dependencies
