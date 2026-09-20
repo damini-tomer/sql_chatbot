@@ -90,7 +90,7 @@ sql_chatbot/
 ├── .streamlit/
 │   └── secrets.toml     # LOCAL ONLY: Hidden credentials (API Keys & DB Passwords)
 ├── .gitignore           # Safeguards secrets.toml & venv/ from version control
-├── app.py               # Main application conversational chat pipeline logic
+├── better_version_app.py               # Main application conversational chat pipeline logic
 ├── upload_data.py       # Data migration engine to ingest the 6 CSV files into MySQL
 ├── requirements.txt     # Complete environment snapshots & package variations
 └── README.md            # Comprehensive project documentation
@@ -136,7 +136,7 @@ Click through the interface window to cleanly construct your MySQL architecture 
 
 ### 5. Fire Up the Chatbot Application
 ```bash
-streamlit run app.py
+streamlit run better_version_app.py
 ```
 The application module will instantly boot open automatically on your local host framework environment at **`http://localhost:8501`**.
 
